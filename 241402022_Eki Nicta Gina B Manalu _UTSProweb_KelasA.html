@@ -1,0 +1,123 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>form html dengan validasi js</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+        }
+
+        body {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+        main {
+            display: block;
+            width: 80%;
+            height: 80%;
+
+        }
+        label {
+            display: block;
+            font-size: 1.3rem;
+            margin: .1rem 0;
+        }
+        input {
+            display: block;
+            font-size: 1.3rem;
+            margin: .2rem 0;
+            height: 1.7rem;
+            width: 30rem;
+            outline: none;
+            border-radius: 6px;
+            border: 1px solid black;
+            padding: 5px 8px;
+           
+        }
+        button {
+            display: block;
+            font-size: 1.1rem;
+            margin: 1.1rem 0;
+            height: 2rem;
+            width: 6rem;
+            outline: none;
+            padding: .01rem;
+            background-color: white;
+           
+            
+        }
+        .err {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>Form Validasi</h1>
+        <form action="#" onsubmit="klik(this)" id="form">
+            <label for="nama">Nama:</label>
+            <input type="text" name="nama" id="nama" required>
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email" required">
+            <p class="err erremail"></p>
+            <label for="usia">Usia:</label>
+            <input type="number" name="usia" id="usia" required>
+            <p class="err errusia"></p>
+            <button type="submit" id="tombol">Submit</button>
+        </form>
+    </main>
+
+
+    <script>
+        let cl = console.log
+        let email = document.getElementsByName("email")[0];
+        let usia = document.getElementsByName("usia")[0];
+        let tombol = document.getElementById("tombol");
+        let errusia = document.querySelector(".errusia")
+        let erremail = document.querySelector(".erremail")
+        
+
+        function klik(arg) {
+
+            let emailValue = email.value
+            let usiaValue = usia.value
+            let regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/
+
+            if (!regex.test(emailValue)) {
+                erremail.innerText = "Masukkan  alamat email yang  benar! : @gmail.com"
+                event.preventDefault()
+            } else {
+                erremail.innerText = ''
+            }
+            
+            
+            
+            if (usiaValue < 1 || usiaValue > 1000) {
+                errusia.innerText = "Masukkan usia yang sebenarnya!"
+                event.preventDefault()
+                
+            } else {
+                errusia.innerText = ''
+                
+            }
+            
+        }
+
+    
+    </script>
+</body>
+</html>
